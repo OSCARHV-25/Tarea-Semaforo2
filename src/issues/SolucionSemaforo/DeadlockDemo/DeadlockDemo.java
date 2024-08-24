@@ -46,10 +46,10 @@ class SyncThread implements Runnable {
     private Semaphore semaforo;
 
     // Constructor inicia y semaforo
-    public SyncThread(Object ob1, Object ob2, Semaphore semaforoBinario) {
+    public SyncThread(Object ob1, Object ob2, Semaphore semaforo) {
         this.ob1 = ob1;
         this.ob2 = ob2;
-        this.semaforo = semaforoBinario;
+        this.semaforo = semaforo;
     }
 
     @Override
