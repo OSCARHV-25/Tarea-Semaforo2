@@ -1,4 +1,4 @@
-package src.issues.SolucionSemaforo.Starvation;
+package issues.SolucionSemaforo.Starvation;
 
 
 
@@ -7,11 +7,13 @@ import java.util.concurrent.Semaphore;
 public class Starvation {
     public static void main(String[] args) {
         Semaphore semaforo = new Semaphore(1);
+        //se crean hilos con diferentes
         Thread hiloAltaPrioridad = new Thread(new TareaAltaPrioridad(semaforo), "Hilo alta prioridad") ;
         Thread hiloBajaPrioridad = new Thread(new TareaBajaPrioridad(semaforo), "Hilo baja prioridad" );
 
 
 
+        //se da prioridad a hilos
         hiloAltaPrioridad.setPriority(Thread.MAX_PRIORITY);
         hiloBajaPrioridad.setPriority(Thread.MIN_PRIORITY);
 
@@ -36,11 +38,11 @@ public class Starvation {
                 System.out.println("Hilo de alta prioridad ejecutandose");
 
                 try {
-                    semaforo.acquire();
-                    Thread.sleep(100);
-                    semaforo.release();
+                    semaforo.acquire();//adquiere permiso
+                    Thread.sleep(100);//pausa
+                    semaforo.release();// libera
                 }catch (InterruptedException e){
-                    Thread.currentThread().interrupt();
+                    Thread.currentThread().interrupt();//manjea la interrupcion
                 }
             }
         }

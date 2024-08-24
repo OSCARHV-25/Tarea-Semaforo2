@@ -1,17 +1,18 @@
-package src.issues.Solucion.racecondition;
+package issues.SolucionSemaforo.racecondition;
 
-import issues.Solucion.Semaforo.SemaforoBinario;
+
+import java.util.concurrent.Semaphore;
 
 public class HiloContador implements Runnable {
 
     private final Contador contador;
 
-    private final SemaforoBinario semaforoBinario;
+    private final Semaphore  semaforo;
 
 
-    public HiloContador(Contador contador, SemaforoBinario semaforoBinario) {
+    public HiloContador(Contador contador, Semaphore semaforo) {
         this.contador = contador;
-        this.semaforoBinario = semaforoBinario;
+        this.semaforo = semaforo;
     }
 
     @Override
@@ -19,11 +20,11 @@ public class HiloContador implements Runnable {
     public void run() {
 
         try{
-            semaforoBinario.acquire();
+            semaforo.acquire();
             for (int i = 0; i < 1000; i++) {
                 contador.incrementarContador();
             }
-            semaforoBinario.release();
+            semaforo.release();
         }catch(InterruptedException ie){
             System.out.println("Sucedió un excepción interrumpida; " + ie.getMessage());
         }

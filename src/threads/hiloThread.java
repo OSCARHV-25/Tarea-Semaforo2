@@ -1,4 +1,4 @@
-package src.threads;
+package threads;
 
 public class hiloThread extends Thread {
     @Override

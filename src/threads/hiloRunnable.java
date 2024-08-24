@@ -1,4 +1,4 @@
-package src.threads;
+package threads;
 
 public class hiloRunnable implements Runnable {
 

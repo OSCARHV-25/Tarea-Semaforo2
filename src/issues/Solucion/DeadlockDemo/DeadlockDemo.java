@@ -1,6 +1,4 @@
-package src.issues.SolucionSemaforo.DeadlockDemo;
-
-
+package issues.Solucion.DeadlockDemo;
 
 
 import java.util.concurrent.Semaphore;
@@ -13,7 +11,7 @@ public class DeadlockDemo {
         Object ob3 = new Object();
         Semaphore semaforo = new Semaphore(1);
 
-
+        /// se agrego el parametro de semaforoBinario a cada hilo
         Thread t1 = new Thread(new SyncThread(ob1, ob2, semaforo), "hilo1");
         Thread t2 = new Thread(new SyncThread(ob2, ob3, semaforo), "hilo2");
         Thread t3 = new Thread(new SyncThread(ob3, ob1, semaforo), "hilo3");
@@ -38,13 +36,13 @@ class SyncThread implements Runnable {
 
     public Object ob1;
     public Object ob2;
-    private Semaphore semaforo; //
+    private Semaphore semaforo;
 
 
-    public SyncThread(Object ob1, Object ob2, Semaphore semaforoBinario) {
+    public SyncThread(Object ob1, Object ob2, Semaphore semaforo) {
         this.ob1 = ob1;
         this.ob2 = ob2;
-        this.semaforo = semaforoBinario;
+        this.semaforo = semaforo;
     }
 
     @Override

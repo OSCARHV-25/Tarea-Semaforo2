@@ -1,4 +1,4 @@
-package src.issues.Solucion.Semaforo;
+package issues.Solucion.Semaforo;
 
 public class SemaforoBinario {
 

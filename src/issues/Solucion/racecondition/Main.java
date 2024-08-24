@@ -1,20 +1,22 @@
-package src.issues.Solucion.racecondition;
+package issues.Solucion.racecondition;
 
-import issues.Solucion.Semaforo.SemaforoBinario;
+
+
+import java.util.concurrent.Semaphore;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Contador contador = new Contador();
-        SemaforoBinario semaforoBinario = new SemaforoBinario();
+        Semaphore semaforo = new Semaphore(1);
 
-        Runnable tarea1 = new HiloContador(contador, semaforoBinario);
-        Runnable tarea2 = new HiloContador(contador,semaforoBinario);
-        Runnable tarea3 = new HiloContador(contador,semaforoBinario);
-        Runnable tarea4 = new HiloContador(contador,semaforoBinario);
-        Runnable tarea5 = new HiloContador(contador,semaforoBinario);
-        Runnable tarea6 = new HiloContador(contador,semaforoBinario);
-        Runnable tarea7 = new HiloContador(contador,semaforoBinario);
+        Runnable tarea1 = new HiloContador(contador, semaforo);
+        Runnable tarea2 = new HiloContador(contador,semaforo);
+        Runnable tarea3 = new HiloContador(contador,semaforo);
+        Runnable tarea4 = new HiloContador(contador,semaforo);
+        Runnable tarea5 = new HiloContador(contador,semaforo);
+        Runnable tarea6 = new HiloContador(contador,semaforo);
+        Runnable tarea7 = new HiloContador(contador,semaforo);
 
         Thread hilo1 = new Thread(tarea1);
         Thread hilo2 = new Thread(tarea2);

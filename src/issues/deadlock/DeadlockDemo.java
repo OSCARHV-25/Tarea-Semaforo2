@@ -1,4 +1,4 @@
-package src.issues.deadlock;
+package issues.deadlock;
 
 public class DeadlockDemo {
 

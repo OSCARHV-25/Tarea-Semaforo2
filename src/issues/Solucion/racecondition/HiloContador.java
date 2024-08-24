@@ -1,4 +1,4 @@
-package src.issues.SolucionSemaforo.racecondition;
+package issues.Solucion.racecondition;
 
 
 import java.util.concurrent.Semaphore;
@@ -10,9 +10,9 @@ public class HiloContador implements Runnable {
     private final Semaphore semaforo;
 
 
-    public HiloContador(Contador contador, Semaphore semaforoBinario) {
+    public HiloContador(Contador contador, Semaphore semaforo) {
         this.contador = contador;
-        this.semaforo = semaforoBinario;
+        this.semaforo = semaforo;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class HiloContador implements Runnable {
             }
             semaforo.release();
         }catch(InterruptedException ie){
-            System.out.println("Sucedió un excepción interrumpida; " + ie.getMessage());
+            System.out.println("Sucedió una excepción interrumpida; " + ie.getMessage());
         }
     }
 }

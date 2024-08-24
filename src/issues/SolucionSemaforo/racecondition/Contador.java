@@ -1,15 +1,15 @@
-package src.issues.racecondition;
+package issues.SolucionSemaforo.racecondition;
 
 public class Contador {
+
     private int contador = 0;
 
-    public synchronized void incrementarContador(){
+    public void incrementarContador(){
         contador ++;
 
     }
 
     public int getContador(){
         return contador;
-}
-
+    }
 }

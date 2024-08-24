@@ -1,12 +1,13 @@
-package src.issues.Solucion.Starvation;
+package issues.Solucion.Starvation;
 
-import issues.Solucion.Semaforo.SemaforoBinario;
+
+import java.util.concurrent.Semaphore;
 
 public class Starvation {
     public static void main(String[] args) {
-        SemaforoBinario semaforoBinario = new SemaforoBinario();
-        Thread hiloAltaPrioridad = new Thread(new TareaAltaPrioridad(semaforoBinario), "Hilo alta prioridad") ;
-        Thread hiloBajaPrioridad = new Thread(new TareaBajaPrioridad(semaforoBinario), "Hilo baja prioridad" );
+        Semaphore semaforo = new Semaphore(1);
+        Thread hiloAltaPrioridad = new Thread(new TareaAltaPrioridad(semaforo), "Hilo alta prioridad") ;
+        Thread hiloBajaPrioridad = new Thread(new TareaBajaPrioridad(semaforo), "Hilo baja prioridad" );
 
 
 
@@ -21,11 +22,11 @@ public class Starvation {
 
     static class TareaAltaPrioridad implements Runnable {
 
-        private final SemaforoBinario semaforoBinario;
+        private final Semaphore semaforo;
 
 
-        public TareaAltaPrioridad(SemaforoBinario semaforoBinario) {
-            this.semaforoBinario = semaforoBinario;
+        public TareaAltaPrioridad(Semaphore semaforo) {
+            this.semaforo = semaforo;
         }
         @Override
         public void run() {
@@ -34,9 +35,9 @@ public class Starvation {
                 System.out.println("Hilo de alta prioridad ejecutandose");
 
                 try {
-                    semaforoBinario.acquire();
+                    semaforo.acquire();
                     Thread.sleep(100);
-                    semaforoBinario.release();
+                    semaforo.release();
                 }catch (InterruptedException e){
                     Thread.currentThread().interrupt();
                 }
@@ -46,11 +47,11 @@ public class Starvation {
     static class TareaBajaPrioridad implements Runnable {
 
 
-        private final SemaforoBinario semaforoBinario;
+        private final Semaphore semaforo;
 
 
-        public TareaBajaPrioridad(SemaforoBinario semaforoBinario) {
-            this.semaforoBinario = semaforoBinario;
+        public TareaBajaPrioridad(Semaphore semaforo) {
+            this.semaforo = semaforo;
         }
         @Override
         public void run() {
@@ -58,9 +59,9 @@ public class Starvation {
                 System.out.println("Hilo de baja prioridad ejecutandose");
 
                 try {
-                    semaforoBinario.acquire();
+                    semaforo.acquire();
                     Thread.sleep(1000);
-                    semaforoBinario.release();
+                    semaforo.release();
                 }catch (InterruptedException e){
                     Thread.currentThread().interrupt();
                 }
